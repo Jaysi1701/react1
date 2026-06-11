@@ -1,17 +1,33 @@
 import "./App.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import EmployeeCard from "./components/EmployeeCard";
+
 function App() {
   return (
     <>
       <Header />
 
       <main>
-        <h2>Home Page</h2>
+        <h2>Employee List</h2>
 
-        <p>Welcome to Employee Management Portal</p>
+        <EmployeeCard
+          name="Jaysi"
+          role="Frontend Developer"
+          salary="50000"
+        />
 
-        <p>Learning React Fundamentals and Components</p>
+        <EmployeeCard
+          name="Rahul"
+          role="Backend Developer"
+          salary="60000"
+        />
+
+        <EmployeeCard
+          name="Priya"
+          role="UI Designer"
+          salary="45000"
+        />
       </main>
 
       <Footer />
