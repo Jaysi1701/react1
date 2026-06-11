@@ -29,6 +29,7 @@ function App() {
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
   const [salary, setSalary] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
 
   const addEmployee = () => {
     if (!name || !role || !salary) {
@@ -51,12 +52,19 @@ function App() {
   };
 
   const deleteEmployee = (id) => {
-    const updatedEmployees = employees.filter(
-      (employee) => employee.id !== id
+    setEmployees(
+      employees.filter(
+        (employee) => employee.id !== id
+      )
     );
-
-    setEmployees(updatedEmployees);
   };
+
+  const filteredEmployees = employees.filter(
+    (employee) =>
+      employee.name
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase())
+  );
 
   return (
     <>
@@ -72,21 +80,27 @@ function App() {
             type="text"
             placeholder="Employee Name"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) =>
+              setName(e.target.value)
+            }
           />
 
           <input
             type="text"
             placeholder="Role"
             value={role}
-            onChange={(e) => setRole(e.target.value)}
+            onChange={(e) =>
+              setRole(e.target.value)
+            }
           />
 
           <input
             type="number"
             placeholder="Salary"
             value={salary}
-            onChange={(e) => setSalary(e.target.value)}
+            onChange={(e) =>
+              setSalary(e.target.value)
+            }
           />
 
           <button onClick={addEmployee}>
@@ -94,7 +108,16 @@ function App() {
           </button>
         </div>
 
-        {employees.map((employee) => (
+        <input
+          type="text"
+          placeholder="Search Employee"
+          value={searchTerm}
+          onChange={(e) =>
+            setSearchTerm(e.target.value)
+          }
+        />
+
+        {filteredEmployees.map((employee) => (
           <EmployeeCard
             key={employee.id}
             id={employee.id}
