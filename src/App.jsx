@@ -5,7 +5,37 @@ import Footer from "./components/Footer";
 import EmployeeCard from "./components/EmployeeCard";
 
 function App() {
-  const [employeeCount, setEmployeeCount] = useState(3);
+  const [employees, setEmployees] = useState([
+    {
+      id: 1,
+      name: "Janani",
+      role: "Frontend Developer",
+      salary: 50000,
+    },
+    {
+      id: 2,
+      name: "Rahul",
+      role: "Backend Developer",
+      salary: 60000,
+    },
+    {
+      id: 3,
+      name: "Priya",
+      role: "UI Designer",
+      salary: 45000,
+    },
+  ]);
+
+  const addEmployee = () => {
+    const newEmployee = {
+      id: employees.length + 1,
+      name: `Employee ${employees.length + 1}`,
+      role: "Trainee",
+      salary: 30000,
+    };
+
+    setEmployees([...employees, newEmployee]);
+  };
 
   return (
     <>
@@ -14,33 +44,20 @@ function App() {
       <main>
         <h2>Employee List</h2>
 
-        <h3>Total Employees: {employeeCount}</h3>
+        <h3>Total Employees: {employees.length}</h3>
 
-        <button
-          onClick={() =>
-            setEmployeeCount(employeeCount + 1)
-          }
-        >
+        <button onClick={addEmployee}>
           Add Employee
         </button>
 
-        <EmployeeCard
-          name="Janani"
-          role="Frontend Developer"
-          salary="50000"
-        />
-
-        <EmployeeCard
-          name="Rahul"
-          role="Backend Developer"
-          salary="60000"
-        />
-
-        <EmployeeCard
-          name="Priya"
-          role="UI Designer"
-          salary="45000"
-        />
+        {employees.map((employee) => (
+          <EmployeeCard
+            key={employee.id}
+            name={employee.name}
+            role={employee.role}
+            salary={employee.salary}
+          />
+        ))}
       </main>
 
       <Footer />
