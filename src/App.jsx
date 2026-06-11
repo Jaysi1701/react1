@@ -26,15 +26,28 @@ function App() {
     },
   ]);
 
+  const [name, setName] = useState("");
+  const [role, setRole] = useState("");
+  const [salary, setSalary] = useState("");
+
   const addEmployee = () => {
+    if (!name || !role || !salary) {
+      alert("Please fill all fields");
+      return;
+    }
+
     const newEmployee = {
       id: employees.length + 1,
-      name: `Employee ${employees.length + 1}`,
-      role: "Trainee",
-      salary: 30000,
+      name,
+      role,
+      salary,
     };
 
     setEmployees([...employees, newEmployee]);
+
+    setName("");
+    setRole("");
+    setSalary("");
   };
 
   return (
@@ -42,13 +55,36 @@ function App() {
       <Header />
 
       <main>
-        <h2>Employee List</h2>
+        <h2>Employee Management</h2>
 
         <h3>Total Employees: {employees.length}</h3>
 
-        <button onClick={addEmployee}>
-          Add Employee
-        </button>
+        <div className="form-container">
+          <input
+            type="text"
+            placeholder="Employee Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+
+          <input
+            type="text"
+            placeholder="Role"
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
+          />
+
+          <input
+            type="number"
+            placeholder="Salary"
+            value={salary}
+            onChange={(e) => setSalary(e.target.value)}
+          />
+
+          <button onClick={addEmployee}>
+            Add Employee
+          </button>
+        </div>
 
         {employees.map((employee) => (
           <EmployeeCard
