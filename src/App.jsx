@@ -37,7 +37,7 @@ function App() {
     }
 
     const newEmployee = {
-      id: employees.length + 1,
+      id: Date.now(),
       name,
       role,
       salary,
@@ -48,6 +48,14 @@ function App() {
     setName("");
     setRole("");
     setSalary("");
+  };
+
+  const deleteEmployee = (id) => {
+    const updatedEmployees = employees.filter(
+      (employee) => employee.id !== id
+    );
+
+    setEmployees(updatedEmployees);
   };
 
   return (
@@ -89,9 +97,11 @@ function App() {
         {employees.map((employee) => (
           <EmployeeCard
             key={employee.id}
+            id={employee.id}
             name={employee.name}
             role={employee.role}
             salary={employee.salary}
+            onDelete={deleteEmployee}
           />
         ))}
       </main>
