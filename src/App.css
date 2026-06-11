@@ -65,3 +65,16 @@ button:hover {
 .delete-btn:hover {
   opacity: 0.9;
 }
+
+.navbar {
+  display: flex;
+  gap: 20px;
+  padding: 15px;
+  background: #f3f4f6;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
