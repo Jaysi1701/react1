@@ -1,9 +1,12 @@
 import "./App.css";
+import { useState } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import EmployeeCard from "./components/EmployeeCard";
 
 function App() {
+  const [employeeCount, setEmployeeCount] = useState(3);
+
   return (
     <>
       <Header />
@@ -11,8 +14,18 @@ function App() {
       <main>
         <h2>Employee List</h2>
 
+        <h3>Total Employees: {employeeCount}</h3>
+
+        <button
+          onClick={() =>
+            setEmployeeCount(employeeCount + 1)
+          }
+        >
+          Add Employee
+        </button>
+
         <EmployeeCard
-          name="Jaysi"
+          name="Janani"
           role="Frontend Developer"
           salary="50000"
         />
